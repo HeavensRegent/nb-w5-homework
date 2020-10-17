@@ -2,9 +2,9 @@
 
 ## Intro
 This is a single day work day scheduler. You can add items to different time periods, you can save those items. On refresh saved items are still there.
-View this awesome thing yourself [here]()
+View this awesome thing yourself [here](https://heavensregent.github.io/nb-w5-homework/)
 
-## Your Task
+## My Task Was
 
 Create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
@@ -39,14 +39,14 @@ THEN the saved events persist
 ```
 
 
-## Mock-Up
+## Screenshot
 
 The following animation demonstrates the application functionality:
 
 ![day planner demo](./Assets/screenshot.png)
 
 
-## Grading Requirements
+## Grading Criteria
 
 This homework is graded based on the following criteria: 
 
