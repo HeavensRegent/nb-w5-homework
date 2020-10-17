@@ -57,12 +57,19 @@ $(document).ready(() => {
         //Save it to localStorage with the key being "hour-10" and the "input for that hour"'s value as the value
         var key = $(this).data('hour');
         var inputVal = $("." + key).val();
+        key = "hour-" + key
 
+        //If there isn't a value in the input
         if(!inputVal)
+        {
+            //If there is a key for the item delete it
+            if(localStorage.getItem(key))
+                localStorage.removeItem(key);
             return;
+        }
 
         inputVal = inputVal.trim();
-        localStorage.setItem("hour-" + key, inputVal);
+        localStorage.setItem(key, inputVal);
     }
 
     //Save button click
