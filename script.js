@@ -8,16 +8,27 @@ $(document).ready(() => {
 
     //For each hour we want to display (startFrom to endAt)
     var tempDay = moment();
-    for(var i = startFrom; i < hoursInDay - endAt; i++)
+    for(var i = startFrom; i < endAt; i++)
     {
-        tempDay.set('hour', i);
-        localStorage.getItem('hour-' + i);
-        buildRow();
+        var rowData = {
+            hour: tempDay.set('hour', i).format('hA'),
+            value: localStorage.getItem('hour-' + i) || ''
+        };        
+
+        buildRow(rowData);
     }
 
     function buildRow(data) {
         //Build a row with three columns: time slot, input box, button
         var row = $('<div class="row">');
+
+        row.append($('<div class="col sm-1">').text(data.hour));
+        row.append($('<div class="col sm-10">').text(data.value));
+
+        var rowButton = $('<div class="col sm-1">');
+        rowButton.append($('<button class="save">').attr('data-hour', data.hour))
+
+        row.append(rowButton);
 
         $('.time-blocks').append(row);
     }
