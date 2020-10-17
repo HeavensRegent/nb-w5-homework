@@ -10,9 +10,20 @@ $(document).ready(() => {
     var tempDay = moment();
     for(var i = startFrom; i < endAt; i++)
     {
+        tempDay.set('hour', i);
+        currentHour = parseInt(now.format('H'));
+
+        //Set this to past present or future
+        var hourFormat = "future";
+        if(i < currentHour)
+            hourFormat = "past";
+        else if(i === currentHour)
+            hourFormat = "present";
+
         var rowData = {
-            hour: tempDay.set('hour', i).format('hA'),
-            value: localStorage.getItem('hour-' + i) || ''
+            hour: tempDay.format('hA'),
+            value: localStorage.getItem('hour-' + i) || '',
+            format: hourFormat
         };        
 
         buildRow(rowData);
@@ -22,22 +33,25 @@ $(document).ready(() => {
         //Build a row with three columns: time slot, input box, button
         var row = $('<div class="row">');
 
-        row.append($('<div class="col sm-1">').text(data.hour));
-        row.append($('<div class="col sm-10">').text(data.value));
+        row.append($('<div class="col-sm-1 hour">').text(data.hour));
 
-        var rowButton = $('<div class="col sm-1">');
-        rowButton.append($('<button class="save">').attr('data-hour', data.hour))
+        var inputDiv = $('<div class="col-sm-10 ' + data.format + ' pl-0">');
+        inputDiv.append($('<textarea>').val(data.value));
+        row.append(inputDiv);
+
+        var rowButton = $('<div class="col-sm-1 saveBtn">').attr('data-hour', data.hour);
 
         row.append(rowButton);
 
-        $('.time-blocks').append(row);
+        $('.time-block').append(row);
     }
 
     function saveItem(item) {
         //If there is a value in the input... PS. don't forget to trim
         //Save it to localStorage with the key being "hour-10" and the "input for that hour"'s value as the value
+        
     }
 
-    $('.save').on('click', saveItem);
+    $('.saveBtn').on('click', saveItem);
 
 });
